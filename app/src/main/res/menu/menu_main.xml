@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_Open"
+        android:enabled="true"
+        android:icon="@drawable/ic_open_black"
+        android:orderInCategory="100"
+        android:title="OPEN"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_Save"
+        android:enabled="true"
+        android:icon="@drawable/ic_save_black"
+        android:orderInCategory="101"
+        android:title="SAVE"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_Camera"
+        android:enabled="true"
+        android:icon="@drawable/ic_camera_black"
+        android:orderInCategory="99"
+        android:title="Camera"
+        app:showAsAction="always" />
+</menu>
