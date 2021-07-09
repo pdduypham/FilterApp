@@ -20,7 +20,7 @@ public class FrameAdapter extends RecyclerView.Adapter<FrameAdapter.FrameViewHol
     List<Integer> frameList;
     FrameAdapterListener listener;
 
-    int row_selected=-1;
+    int row_selected = -1;
 
     public FrameAdapter(Context context, FrameAdapterListener listener) {
         this.context = context;
@@ -48,15 +48,15 @@ public class FrameAdapter extends RecyclerView.Adapter<FrameAdapter.FrameViewHol
     @NonNull
     @Override
     public FrameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.frame_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.frame_item, parent, false);
         return new FrameViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FrameAdapter.FrameViewHolder holder, int position) {
-        if (row_selected == position){
+        if (row_selected == position) {
             holder.img_check.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.img_check.setVisibility(View.INVISIBLE);
         }
 
@@ -90,7 +90,7 @@ public class FrameAdapter extends RecyclerView.Adapter<FrameAdapter.FrameViewHol
         }
     }
 
-    public interface FrameAdapterListener{
+    public interface FrameAdapterListener {
         void onFrameSelected(int frame);
     }
 }

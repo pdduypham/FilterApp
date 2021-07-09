@@ -13,14 +13,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycler_frame"/>
-        
+            android:id="@+id/recycler_frame" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_add_frame"
-            android:text="Add Frame"/>
-        
+            android:text="Add Frame" />
+
     </LinearLayout>
 
 </RelativeLayout>

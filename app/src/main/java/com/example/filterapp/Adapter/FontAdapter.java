@@ -20,7 +20,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.FontViewHolder
 
     Context context;
     FontAdapterClickListener listener;
-    List <String> fontList;
+    List<String> fontList;
 
     int row_selected = -1;
 
@@ -45,21 +45,21 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.FontViewHolder
         result.add("Quicksand_Dash.otf");
         result.add("Shrift_Steamy.otf");
 
-        return  result;
+        return result;
     }
 
     @NonNull
     @Override
     public FontViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.font_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.font_item, parent, false);
         return new FontViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FontAdapter.FontViewHolder holder, int position) {
-        if (row_selected==position){
+        if (row_selected == position) {
             holder.img_check.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.img_check.setVisibility(View.INVISIBLE);
         }
 
@@ -79,6 +79,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.FontViewHolder
     public class FontViewHolder extends RecyclerView.ViewHolder {
         TextView tv_font_name, tv_font_demo;
         ImageView img_check;
+
         public FontViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -97,7 +98,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontAdapter.FontViewHolder
         }
     }
 
-    public interface  FontAdapterClickListener{
+    public interface FontAdapterClickListener {
         void onFontSelected(String fontName);
     }
 }

@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.filterapp.FiltersListFragment;
 import com.example.filterapp.Interface.FiltersListFragmentListener;
 import com.example.filterapp.R;
 import com.zomato.photofilters.utils.ThumbnailItem;
@@ -25,7 +24,7 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.MyVi
     FiltersListFragmentListener listener;
     int selectedIndex = 0;
 
-    public ThumbnailAdapter(Context context,List<ThumbnailItem> thumbnailItems, FiltersListFragmentListener listener) {
+    public ThumbnailAdapter(Context context, List<ThumbnailItem> thumbnailItems, FiltersListFragmentListener listener) {
         this.context = context;
         this.thumbnailItems = thumbnailItems;
         this.listener = listener;
@@ -34,8 +33,8 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.MyVi
     @NonNull
     @Override
     public ThumbnailAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(context).inflate(R.layout.thumbnail_item,parent,false);
-       return  new MyViewHolder(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.thumbnail_item, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
@@ -54,10 +53,10 @@ public class ThumbnailAdapter extends RecyclerView.Adapter<ThumbnailAdapter.MyVi
 
         holder.filter_name.setText(thumbnailItem.filterName);
 
-        if(selectedIndex == position){
-            holder.filter_name.setTextColor(ContextCompat.getColor(context,R.color.selected_filter));
-        }else {
-            holder.filter_name.setTextColor(ContextCompat.getColor(context,R.color.normal_filter));
+        if (selectedIndex == position) {
+            holder.filter_name.setTextColor(ContextCompat.getColor(context, R.color.selected_filter));
+        } else {
+            holder.filter_name.setTextColor(ContextCompat.getColor(context, R.color.normal_filter));
         }
     }
 

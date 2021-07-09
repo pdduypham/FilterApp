@@ -1,16 +1,14 @@
 package com.example.filterapp;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.filterapp.Adapter.FrameAdapter;
 import com.example.filterapp.Interface.AddFrameListener;
@@ -26,7 +24,7 @@ public class FrameFragment extends BottomSheetDialogFragment implements FrameAda
     RecyclerView recycler_frame;
     Button btn_add_frame;
 
-    int frame_selected=-1;
+    int frame_selected = -1;
 
     AddFrameListener listener;
 
@@ -37,7 +35,7 @@ public class FrameFragment extends BottomSheetDialogFragment implements FrameAda
     static FrameFragment instance;
 
     public static FrameFragment getInstance() {
-        if (instance==null){
+        if (instance == null) {
             instance = new FrameFragment();
         }
         return instance;
@@ -87,12 +85,12 @@ public class FrameFragment extends BottomSheetDialogFragment implements FrameAda
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_frame, container, false);
+        View view = inflater.inflate(R.layout.fragment_frame, container, false);
 
         recycler_frame = view.findViewById(R.id.recycler_frame);
         recycler_frame.setHasFixedSize(true);
-        recycler_frame.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        recycler_frame.setAdapter(new FrameAdapter(getContext(),this));
+        recycler_frame.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recycler_frame.setAdapter(new FrameAdapter(getContext(), this));
         btn_add_frame = view.findViewById(R.id.btn_add_frame);
 
         btn_add_frame.setOnClickListener(new View.OnClickListener() {

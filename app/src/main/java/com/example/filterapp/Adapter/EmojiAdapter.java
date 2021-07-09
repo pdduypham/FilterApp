@@ -28,8 +28,8 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.EmojiViewHol
 
     @NonNull
     @Override
-    public EmojiViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.emoji_item,parent,false);
+    public EmojiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.emoji_item, parent, false);
         return new EmojiViewHolder(view);
     }
 
@@ -45,6 +45,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.EmojiViewHol
 
     public class EmojiViewHolder extends RecyclerView.ViewHolder {
         EmojiconTextView emoji_text_view;
+
         public EmojiViewHolder(@NonNull View itemView) {
             super(itemView);
             emoji_text_view = itemView.findViewById(R.id.emoji_text_view);
@@ -58,7 +59,7 @@ public class EmojiAdapter extends RecyclerView.Adapter<EmojiAdapter.EmojiViewHol
         }
     }
 
-    public interface  EmojiAdapterListener{
+    public interface EmojiAdapterListener {
         void onEmojiItemSelected(String emoji);
     }
 }

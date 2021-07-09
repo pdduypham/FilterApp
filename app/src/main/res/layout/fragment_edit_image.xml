@@ -9,25 +9,25 @@
     android:paddingRight="16dp"
     tools:context=".EditImageFragment">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:paddingRight="10dp"
-       android:paddingLeft="10dp"
-       android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical">
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="BRIGHTNESS"
-           android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BRIGHTNESS"
+            android:textSize="20sp" />
 
-       <SeekBar
-           android:id="@+id/seekBar_brightness"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent" />
+        <SeekBar
+            android:id="@+id/seekBar_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-   </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

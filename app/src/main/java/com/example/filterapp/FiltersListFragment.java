@@ -1,18 +1,16 @@
 package com.example.filterapp;
 
 import android.graphics.Bitmap;
-import android.net.wifi.aware.WifiAwareManager;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.filterapp.Adapter.ThumbnailAdapter;
 import com.example.filterapp.Interface.FiltersListFragmentListener;
@@ -44,10 +42,10 @@ public class FiltersListFragment extends BottomSheetDialogFragment implements Fi
 
     static Bitmap bitmap;
 
-    public static FiltersListFragment getInstance(Bitmap bitmapSave){
+    public static FiltersListFragment getInstance(Bitmap bitmapSave) {
         bitmap = bitmapSave;
 
-        if (instance==null){
+        if (instance == null) {
             instance = new FiltersListFragment();
         }
         return instance;
@@ -101,15 +99,15 @@ public class FiltersListFragment extends BottomSheetDialogFragment implements Fi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_filters_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_filters_list, container, false);
 
         thumbnailItemList = new ArrayList<>();
-        thumbnailAdapter = new ThumbnailAdapter(getActivity(),thumbnailItemList,this);
+        thumbnailAdapter = new ThumbnailAdapter(getActivity(), thumbnailItemList, this);
 
         recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        recyclerView.setItemAnimator( new DefaultItemAnimator());
-        int space = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,8,getResources().getDisplayMetrics());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        int space = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
         recyclerView.addItemDecoration(new SpacesItemDecoration(space));
         recyclerView.setAdapter(thumbnailAdapter);
 
@@ -123,13 +121,13 @@ public class FiltersListFragment extends BottomSheetDialogFragment implements Fi
             @Override
             public void run() {
                 Bitmap thumbImg;
-                if (bitmap == null){
-                    thumbImg = BitmapUtils.getBitmapFromAssets(getActivity(),MainActivity.pictureName,100,100);
-                }else {
-                    thumbImg = Bitmap.createScaledBitmap(bitmap,100,100,false);
+                if (bitmap == null) {
+                    thumbImg = BitmapUtils.getBitmapFromAssets(getActivity(), MainActivity.pictureName, 100, 100);
+                } else {
+                    thumbImg = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
                 }
 
-                if (thumbImg == null){
+                if (thumbImg == null) {
                     return;
                 }
 
@@ -144,7 +142,7 @@ public class FiltersListFragment extends BottomSheetDialogFragment implements Fi
 
                 List<Filter> filters = FilterPack.getFilterPack(getActivity());
 
-                for (Filter filter : filters){
+                for (Filter filter : filters) {
                     ThumbnailItem tI = new ThumbnailItem();
                     tI.image = thumbImg;
                     tI.filter = filter;
@@ -168,7 +166,7 @@ public class FiltersListFragment extends BottomSheetDialogFragment implements Fi
 
     @Override
     public void onFilterSelected(Filter filter) {
-        if (listener!=null){
+        if (listener != null) {
             listener.onFilterSelected(filter);
         }
     }

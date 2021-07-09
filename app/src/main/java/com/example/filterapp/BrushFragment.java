@@ -1,12 +1,6 @@
 package com.example.filterapp;
 
-import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +8,13 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.ToggleButton;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.filterapp.Adapter.ColorAdapter;
 import com.example.filterapp.Interface.BrushFragmentListener;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +23,7 @@ import java.util.List;
  */
 public class BrushFragment extends BottomSheetDialogFragment implements ColorAdapter.ColorAdapterListener {
 
-    SeekBar seekBar_brush_size,seekBar_opacity_size;
+    SeekBar seekBar_brush_size, seekBar_opacity_size;
     RecyclerView recycler_color;
     ToggleButton btn_brush_state;
     ColorAdapter colorAdapter;
@@ -37,8 +32,8 @@ public class BrushFragment extends BottomSheetDialogFragment implements ColorAda
 
     static BrushFragment instance;
 
-    public static BrushFragment getInstance(){
-        if (instance==null){
+    public static BrushFragment getInstance() {
+        if (instance == null) {
             instance = new BrushFragment();
         }
 
@@ -100,9 +95,9 @@ public class BrushFragment extends BottomSheetDialogFragment implements ColorAda
         btn_brush_state = view.findViewById(R.id.btn_brush_state);
         recycler_color = view.findViewById(R.id.recycler_color);
         recycler_color.setHasFixedSize(true);
-        recycler_color.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        
-        colorAdapter = new ColorAdapter(getContext(),this);
+        recycler_color.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+        colorAdapter = new ColorAdapter(getContext(), this);
         recycler_color.setAdapter(colorAdapter);
 
         seekBar_opacity_size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

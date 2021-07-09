@@ -1,16 +1,6 @@
 package com.example.filterapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.viewpager.widget.ViewPager;
-
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,10 +14,15 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.filterapp.Adapter.ViewPagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import com.example.filterapp.Interface.AddFrameListener;
 import com.example.filterapp.Interface.AddTextFragmentListener;
 import com.example.filterapp.Interface.BrushFragmentListener;
@@ -36,7 +31,6 @@ import com.example.filterapp.Interface.EmojiFragmentListener;
 import com.example.filterapp.Interface.FiltersListFragmentListener;
 import com.example.filterapp.Utils.BitmapUtils;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -71,8 +65,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
     FiltersListFragment filtersListFragment;
     EditImageFragment editImageFragment;
 
-    CardView btn_filters_list, btn_edit, btn_brush, btn_emoji, btn_add_text, btn_add_image
-            , btn_add_frame,  btn_crop;
+    CardView btn_filters_list, btn_edit, btn_brush, btn_emoji, btn_add_text, btn_add_image, btn_add_frame, btn_crop;
 
     int brightnessFinal = 0;
     float saturationFinal = 1.0f;
@@ -93,10 +86,10 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
         setSupportActionBar(toolbar);
 
         photoEditorView = findViewById(R.id.image_preview);
-        photoEditor = new PhotoEditor.Builder(this,photoEditorView)
-                            .setPinchTextScalable(true)
-                            .setDefaultEmojiTypeface(Typeface.createFromAsset(getAssets(),"emojione-android.ttf"))
-                            .build();
+        photoEditor = new PhotoEditor.Builder(this, photoEditorView)
+                .setPinchTextScalable(true)
+                .setDefaultEmojiTypeface(Typeface.createFromAsset(getAssets(), "emojione-android.ttf"))
+                .build();
         coordinatorLayout = findViewById(R.id.coordinator);
         btn_filters_list = findViewById(R.id.btn_filters_list);
         btn_edit = findViewById(R.id.btn_edit);
@@ -110,12 +103,12 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
         btn_filters_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (filtersListFragment!=null){
-                    filtersListFragment.show(getSupportFragmentManager(),filtersListFragment.getTag());
-                }else {
+                if (filtersListFragment != null) {
+                    filtersListFragment.show(getSupportFragmentManager(), filtersListFragment.getTag());
+                } else {
                     FiltersListFragment filtersListFragment = FiltersListFragment.getInstance(null);
                     filtersListFragment.setListener(MainActivity.this);
-                    filtersListFragment.show(getSupportFragmentManager(),filtersListFragment.getTag());
+                    filtersListFragment.show(getSupportFragmentManager(), filtersListFragment.getTag());
                 }
             }
         });
@@ -125,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             public void onClick(View v) {
                 EditImageFragment editImageFragment = EditImageFragment.getInstance();
                 editImageFragment.setListener(MainActivity.this);
-                editImageFragment.show(getSupportFragmentManager(),editImageFragment.getTag());
+                editImageFragment.show(getSupportFragmentManager(), editImageFragment.getTag());
             }
         });
 
@@ -136,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
                 BrushFragment brushFragment = BrushFragment.getInstance();
                 brushFragment.setListener(MainActivity.this);
-                brushFragment.show(getSupportFragmentManager(),brushFragment.getTag());
+                brushFragment.show(getSupportFragmentManager(), brushFragment.getTag());
             }
         });
 
@@ -145,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             public void onClick(View v) {
                 EmojiFragment emojiFragment = EmojiFragment.getInstance();
                 emojiFragment.setListener(MainActivity.this);
-                emojiFragment.show(getSupportFragmentManager(),emojiFragment.getTag());
+                emojiFragment.show(getSupportFragmentManager(), emojiFragment.getTag());
             }
         });
 
@@ -154,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             public void onClick(View v) {
                 AddTextFragment addTextFragment = AddTextFragment.getInstance();
                 addTextFragment.setListener(MainActivity.this);
-                addTextFragment.show(getSupportFragmentManager(),addTextFragment.getTag());
+                addTextFragment.show(getSupportFragmentManager(), addTextFragment.getTag());
             }
         });
 
@@ -170,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
             public void onClick(View v) {
                 FrameFragment frameFragment = FrameFragment.getInstance();
                 frameFragment.setListener(MainActivity.this);
-                frameFragment.show(getSupportFragmentManager(),frameFragment.getTag());
+                frameFragment.show(getSupportFragmentManager(), frameFragment.getTag());
             }
         });
 
@@ -187,26 +180,26 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
     private void startCrop(Uri uri) {
         String destinationFileName = new StringBuilder(UUID.randomUUID().toString()).append(".jpg").toString();
 
-        UCrop uCrop = UCrop.of(uri,Uri.fromFile(new File(getCacheDir(),destinationFileName)));
+        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
 
         uCrop.start(MainActivity.this);
     }
 
     private void addImageToPicture() {
-        Dexter.withActivity(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        Dexter.withActivity(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        if (multiplePermissionsReport.areAllPermissionsGranted()){
-                            Intent intent = new Intent(Intent.ACTION_PICK);;
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
-                            startActivityForResult(intent,PERMISSION_INSERT_IMAGE);
+                            startActivityForResult(intent, PERMISSION_INSERT_IMAGE);
                         }
                     }
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
-                        Toast.makeText(MainActivity.this,"Permission Denied",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
                     }
                 }).check();
     }
@@ -292,12 +285,19 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
         } else if (id == R.id.action_Save) {
             saveImageToGallery();
             return true;
-        }else if (id == R.id.action_Camera) {
+        } else if (id == R.id.action_Camera) {
             openCamera();
+            return true;
+        } else if (id == R.id.action_AICamera) {
+            openAICamera();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void openAICamera() {
+        startActivity(new Intent(this, AICamera.class));
     }
 
     private void openCamera() {
@@ -306,15 +306,15 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        if (multiplePermissionsReport.areAllPermissionsGranted()){
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
                             ContentValues values = new ContentValues();
-                            values.put(MediaStore.Images.Media.TITLE,"New Picture");
-                            values.put(MediaStore.Images.Media.DESCRIPTION,"From Camera");
-                            image_selected_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+                            values.put(MediaStore.Images.Media.TITLE, "New Picture");
+                            values.put(MediaStore.Images.Media.DESCRIPTION, "From Camera");
+                            image_selected_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_selected_uri);
-                            startActivityForResult(cameraIntent,CAMERA_REQUEST);
-                        }else{
+                            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                        } else {
                             Toast.makeText(MainActivity.this, "Permission denied!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -332,27 +332,27 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                        if (multiplePermissionsReport.areAllPermissionsGranted()){
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
                             photoEditor.saveAsBitmap(new OnSaveBitmap() {
                                 @Override
                                 public void onBitmapReady(Bitmap saveBitmap) {
                                     try {
                                         photoEditorView.getSource().setImageBitmap(saveBitmap);
-                                        final String path = BitmapUtils.insertImage(getContentResolver(),saveBitmap
-                                                ,System.currentTimeMillis()+"_profile.jpg"
-                                                ,null);
-                                        if (!TextUtils.isEmpty(path)){
-                                            Snackbar snackbar = Snackbar.make(coordinatorLayout,"Image saved to galler!"
-                                                    ,Snackbar.LENGTH_LONG).setAction("OPEN", new View.OnClickListener() {
+                                        final String path = BitmapUtils.insertImage(getContentResolver(), saveBitmap
+                                                , System.currentTimeMillis() + "_profile.jpg"
+                                                , null);
+                                        if (!TextUtils.isEmpty(path)) {
+                                            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Image saved to galler!"
+                                                    , Snackbar.LENGTH_LONG).setAction("OPEN", new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
                                                     openImage(path);
                                                 }
                                             });
                                             snackbar.show();
-                                        }else {
-                                            Snackbar snackbar = Snackbar.make(coordinatorLayout,"Unable to save image"
-                                                    ,Snackbar.LENGTH_LONG).setAction("OPEN", new View.OnClickListener() {
+                                        } else {
+                                            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Unable to save image"
+                                                    , Snackbar.LENGTH_LONG).setAction("OPEN", new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {
                                                     openImage(path);
@@ -360,7 +360,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                                             });
                                             snackbar.show();
                                         }
-                                    }catch (Exception e){
+                                    } catch (Exception e) {
 
                                     }
                                 }
@@ -370,7 +370,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
                                 }
                             });
-                        }else{
+                        } else {
                             Toast.makeText(MainActivity.this, "Permission denied!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
     private void openImage(String path) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.parse(path),"image/*");
+        intent.setDataAndType(Uri.parse(path), "image/*");
         startActivity(intent);
     }
 
@@ -413,10 +413,10 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable  Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == PERMISSION_PICK_IMAGE){
+            if (requestCode == PERMISSION_PICK_IMAGE) {
                 Bitmap bitmap = BitmapUtils.getBitmapFromGallery(this, data.getData(), 800, 800);
                 image_selected_uri = data.getData();
                 originalBitmap.recycle();
@@ -433,7 +433,7 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
                 filtersListFragment.setListener(this);
             }
 
-            if (requestCode == CAMERA_REQUEST){
+            if (requestCode == CAMERA_REQUEST) {
                 Bitmap bitmap = BitmapUtils.getBitmapFromGallery(this, image_selected_uri, 800, 800);
 
                 originalBitmap.recycle();
@@ -448,36 +448,36 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
                 filtersListFragment = FiltersListFragment.getInstance(originalBitmap);
                 filtersListFragment.setListener(this);
-            }else  if (requestCode == PERMISSION_INSERT_IMAGE){
-                Bitmap bitmap = BitmapUtils.getBitmapFromGallery(this,data.getData(),150,150);
+            } else if (requestCode == PERMISSION_INSERT_IMAGE) {
+                Bitmap bitmap = BitmapUtils.getBitmapFromGallery(this, data.getData(), 150, 150);
                 photoEditor.addImage(bitmap);
-            }else if (requestCode == UCrop.REQUEST_CROP){
+            } else if (requestCode == UCrop.REQUEST_CROP) {
                 handleCropResult(data);
             }
-        }else if (resultCode == UCrop.RESULT_ERROR){
+        } else if (resultCode == UCrop.RESULT_ERROR) {
             handleCropError(data);
         }
     }
 
     private void handleCropError(Intent data) {
         final Throwable cropError = UCrop.getError(data);
-        if (cropError != null){
-            Toast.makeText(this,""+cropError.getMessage(),Toast.LENGTH_SHORT).show();
-        }else {
+        if (cropError != null) {
+            Toast.makeText(this, "" + cropError.getMessage(), Toast.LENGTH_SHORT).show();
+        } else {
             Toast.makeText(this, "Unexpected Error", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void handleCropResult(Intent data) {
         final Uri resultUri = UCrop.getOutput(data);
-        if (resultUri != null){
+        if (resultUri != null) {
             photoEditorView.getSource().setImageURI(resultUri);
 
             Bitmap bitmap = ((BitmapDrawable) photoEditorView.getSource().getDrawable()).getBitmap();
-            originalBitmap = bitmap.copy(Bitmap.Config.ARGB_8888,true);
+            originalBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
             filteredBitmap = originalBitmap;
             finalBitmap = originalBitmap;
-        }else {
+        } else {
             Toast.makeText(this, "Can not retrieve crop image", Toast.LENGTH_SHORT).show();
         }
     }
@@ -499,9 +499,9 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
     @Override
     public void onBrushStateChangedListener(boolean isEraser) {
-        if (isEraser){
+        if (isEraser) {
             photoEditor.brushEraser();
-        }else {
+        } else {
             photoEditor.setBrushDrawingMode(true);
         }
     }
@@ -513,12 +513,12 @@ public class MainActivity extends AppCompatActivity implements FiltersListFragme
 
     @Override
     public void onAddTextButtonClick(Typeface typeface, String text, int color) {
-        photoEditor.addText(typeface,text,color);
+        photoEditor.addText(typeface, text, color);
     }
 
     @Override
     public void onAddFrame(int frame) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),frame);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), frame);
         photoEditor.addImage(bitmap);
     }
 }

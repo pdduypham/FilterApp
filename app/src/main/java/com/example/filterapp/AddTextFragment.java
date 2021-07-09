@@ -3,16 +3,15 @@ package com.example.filterapp;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.filterapp.Adapter.ColorAdapter;
 import com.example.filterapp.Adapter.FontAdapter;
@@ -30,7 +29,7 @@ public class AddTextFragment extends BottomSheetDialogFragment implements ColorA
     AddTextFragmentListener listener;
 
     EditText edt_add_text;
-    RecyclerView recycler_color,recycler_font;
+    RecyclerView recycler_color, recycler_font;
 
     Typeface typefaceSelected = Typeface.DEFAULT;
 
@@ -39,7 +38,7 @@ public class AddTextFragment extends BottomSheetDialogFragment implements ColorA
     static AddTextFragment instance;
 
     public static AddTextFragment getInstance() {
-        if (instance==null){
+        if (instance == null) {
             instance = new AddTextFragment();
         }
         return instance;
@@ -98,13 +97,13 @@ public class AddTextFragment extends BottomSheetDialogFragment implements ColorA
         edt_add_text = view.findViewById(R.id.edt_add_text);
         recycler_color = view.findViewById(R.id.recycler_color);
         recycler_color.setHasFixedSize(true);
-        recycler_color.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        ColorAdapter colorAdapter = new ColorAdapter(getContext(),this);
+        recycler_color.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        ColorAdapter colorAdapter = new ColorAdapter(getContext(), this);
         recycler_color.setAdapter(colorAdapter);
         recycler_font = view.findViewById(R.id.recycler_font);
         recycler_font.setHasFixedSize(true);
-        recycler_font.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false));
-        FontAdapter fontAdapter = new FontAdapter(getContext(),this);
+        recycler_font.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        FontAdapter fontAdapter = new FontAdapter(getContext(), this);
         recycler_font.setAdapter(fontAdapter);
 
         btn_done = view.findViewById(R.id.btn_done);
@@ -112,7 +111,7 @@ public class AddTextFragment extends BottomSheetDialogFragment implements ColorA
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onAddTextButtonClick(typefaceSelected,edt_add_text.getText().toString().trim(),colorSelected);
+                listener.onAddTextButtonClick(typefaceSelected, edt_add_text.getText().toString().trim(), colorSelected);
             }
         });
 

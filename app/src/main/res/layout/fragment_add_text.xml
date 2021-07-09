@@ -13,23 +13,23 @@
         android:id="@+id/edt_add_text"
         android:scrollbars="vertical"
         android:hint="Nhập văn bản"
-        android:maxHeight="200dp"/>
+        android:maxHeight="200dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recycler_font"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:id="@+id/recycler_color"/>
+        android:id="@+id/recycler_color" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_done"
-        android:text="Done"/>
+        android:text="Done" />
 
 </LinearLayout>

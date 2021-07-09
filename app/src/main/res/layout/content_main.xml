@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/hor_ScrollView"
-        android:layout_marginBottom="15dp"
-        />
+        android:layout_marginBottom="15dp" />
 
     <HorizontalScrollView
         android:id="@+id/hor_ScrollView"
@@ -85,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_edit_white"
-                        android:layout_gravity="center_horizontal"/>
+                        android:layout_gravity="center_horizontal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -94,7 +93,7 @@
                         android:text="Edit"
                         android:textStyle="bold"
                         android:textColor="@android:color/white"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center" />
 
                 </LinearLayout>
 
